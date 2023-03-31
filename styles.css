@@ -1,0 +1,128 @@
+/*
+Mark Ortega-Ponce
+3/25/23
+styles.css
+*/
+/*
+Set heights, so I can set other elements heights
+*/
+body{
+    height: 100vh;
+    /* Remove margin from all sides, navigation links are flush to border when highlighted. And so borders lines are flush with borders. */
+    margin: 0px 0px 0px 0px;
+    /* Make page into an SPA (Single Page Application) */
+    overflow-y: hidden;
+    overflow-x: hidden;
+    /* https://www.color-name.com/old-paper.color#color-palettes */
+    background-color: #F3E9DB
+}
+html{
+    height: 100vh;
+}
+/*
+Set height, and add a border to bottom of heading.
+*/
+h1{
+    height: 5%;
+    border-bottom: 2px solid black;
+    /* Fill entire h1 element, need to remove margin and add padding instead */
+    margin-bottom: 0px;
+    margin-top: 0px;
+    padding-top: 30px;
+    text-align: center;
+    background-color: black;
+    color:#F9F4ED;
+}
+/* Container for navigation bar and main content */
+.flex-container{
+    height: 93%;
+    display: flex;
+    flex-direction: row;
+}
+footer{
+    height: 2%;
+}
+/* Change display to set size, make labels appear bigger and bolder */
+label{
+    display: inline-block;
+    width: 125px;
+    padding: 5px 5px 5px 5px;
+    font-weight: bolder;
+}
+/* Make inputs appear slightly bigger
+and move away from other inputs */
+input{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 5px 5px 5px 5px;
+    width: 225px;
+    /* https://stackoverflow.com/questions/3193512/css-rounded-text-input-fields */
+    /* css 3 */
+    border-radius:1px;
+    /* mozilla */
+    -moz-border-radius:1px;
+    /* webkit */
+    -webkit-border-radius:1px;
+    background-color: #F9F4ED;
+}
+/* Make container full height of remaining window
+move away from left border */
+#sideContainer{
+    height: 100%;
+    padding-top: 30px;
+    /* padding-left: 20px; */
+    width: 250px;
+    border-right: 2px solid black;
+    background-image: url("bookshelf.png");
+    /* Allow side navigation bar to be scrollable. */
+    overflow:auto;
+}
+/*
+Add padding to make highlighted divs appear bigger.
+Move away from other navigation divs.
+*/
+#sideNav > div{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 15px 15px 15px 15px;
+}
+/* Move content away from navigation bar.
+Make entire height of remaining page. */
+.flex-container{
+    display: flex;
+    flex-direction: row;
+}
+.mainContent, #imageContainer{
+    height: 100%;
+    padding-top: 30px;
+    padding-left: 80px;
+}
+/* Button styling */
+button{
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 4px;
+    border: none;
+    width: 90px;
+    background-color: #FCFAF6;
+}
+/* Change button blue when in editing modes. */
+.button{
+    background-color: #09f;
+    color: white;
+}
+/* Class to add to selected navigation links */
+.selected{
+    background-color: #09f;
+    font-weight: bolder;
+    color: white;
+}
+/* Add some padding to buttons away from left border. */
+#buttonsDiv{
+    padding-left: 10px;
+}
+/* Class to add on in javascript */
+.img-size{
+    height: 550px;
+    width: 350px;
+}
