@@ -99,24 +99,25 @@ function edit(){
         // Toggle if we pass initial check.
         this.classList.toggle("button")
         // Remove event listeners from all buttons, add to save button.
-        let addButton = document.getElementById("add");
-        addButton.setAttribute("disabled", "");
-        addButton.removeEventListener("click", add);
+        let $addButton = $("#add")
+        //let addButton = document.getElementById("add");
+        $addButton.attr("disabled", "");
+        $addButton.unbind("click");
     }else{
         this.textContent = "Edit";
         enableInputs();
-        let title = document.getElementById("title").value;
-        let author = document.getElementById("author").value;
-        let copyrightDate = document.getElementById("copyrightDate").value;
-        let numberOfPages = document.getElementById("numberOfPages").value;
+        let title = $("#title")[0].value;
+        let author = $("#author")[0].value;
+        let copyrightDate = $("#copyrightDate").value;
+        let numberOfPages = $("#numberOfPages").value;
         // Get id(title) for currently selected div.
-        let currTitle = document.getElementsByClassName("selected")[0].id;
+        let $currDiv = $(".selected");
+        let currTitle = $currDiv[0].id;
         let storedObject = localStorage.getItem(currTitle);
         let storedJson = JSON.parse(storedObject);
         // Update div name in navbar.
-        let currDiv = document.getElementsByClassName("selected")[0]
-        currDiv.id = title;
-        currDiv.innerHTML = title;
+        $currDiv.attr("id", title);
+        $currDiv.html(title);
 
         // Store any new information.
         if (storedJson.title != title){
@@ -124,10 +125,8 @@ function edit(){
             // Should a user be able to change the title?
             console.log("title changed");
             storedJson.coverURL = "";
-            let currDiv = document.getElementsByClassName("selected")[0];
-            console.log(currDiv);
             // get new image if any.
-            currDiv.click();
+            $currDiv[0].click();
         }
         storedJson.title = title;
         storedJson.author = author;
@@ -138,11 +137,10 @@ function edit(){
         localStorage.removeItem(currTitle);
         // Set new key value, along with any other changes.
         localStorage.setItem(title, JSON.stringify(storedJson));
-        let editButton = document.getElementById("edit");
-        let addButton = document.getElementById("add");
-        editButton.classList.toggle("button");
-        addButton.addEventListener("click", add);
-        addButton.removeAttribute("disabled");
+        $("#edit")[0].classList.toggle("button");
+        let $addButton = $("#add");
+        $addButton.click(add);
+        $addButton.removeAttr("disabled");
     }
 }
 /*
