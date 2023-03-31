@@ -255,7 +255,10 @@ function addDefaultInfo(){
         sideNav.appendChild(div);
     }
 }
-/* Remove book specific information when page is reloaded. */
+/* 
+Remove book specific information
+when page is reloaded or add button is pressed.
+*/
 function resetPage(){
     $("#title")[0].value = "";
     $("#author")[0].value = "";
@@ -265,13 +268,6 @@ function resetPage(){
     console.log($img);
     $img.src = "";
     $img.alt = "";
-    // document.getElementById("title").value = "";
-    // document.getElementById("author").value = "";
-    // document.getElementById("copyrightDate").value = "";
-    // document.getElementById("numberOfPages").value = "";
-    // let img = document.getElementById("bookCover");
-    // img.src = "";
-    // img.alt = "";
 }
 /* Disable inputs when in add or edit mode. */
 function disableInputs(){
