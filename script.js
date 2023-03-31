@@ -223,6 +223,9 @@ function showInfo(){
     // Add selected to div that was clicked.
     this.classList.add("selected");
 }
+/*
+Function to add default books to page as side nav links.
+*/
 function addDefaultInfo(){
     let books = [{
         title:"Fahrenheit 451",
@@ -244,15 +247,15 @@ function addDefaultInfo(){
         coverURL: ""
     }] 
     // Put books items in sidenav.
-    let sideNav = document.getElementById("sideNav");
-
+    let $sideNav = $("#sideNav")[0];
     for (let book of books){
-        //console.log("storing" + book.title);
         localStorage.setItem(book.title, JSON.stringify(book));
-        let div = document.createElement("div");
-        div.id = book.title;
-        div.innerHTML = book.title;
-        sideNav.appendChild(div);
+        let $newDiv = $("<div>");
+        $newDiv.attr("id", book.title);
+        $newDiv.html(book.title);
+        //console.log($newDiv); Still have to access by index.
+        // https://api.jquery.com/append/
+        $sideNav.append($newDiv[0]);
     }
 }
 /* 
