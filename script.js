@@ -83,6 +83,10 @@ function add(){
         }
     }
 }
+/*
+Saves new information from edited book content.
+Disables all inputs besides edit, and reenables on save.
+*/
 function edit(){
 
     let $currEntry = $(".selected")[0];
