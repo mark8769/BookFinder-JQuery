@@ -271,15 +271,10 @@ function resetPage(){
 }
 /* Disable inputs when in add or edit mode. */
 function disableInputs(){
-    let inputs = document.querySelectorAll(".mainContent input");
-    for (let input of inputs){
-        input.removeAttribute("readonly");
-    }
-    let divs = document.querySelectorAll("#sideNav > div");
-    for (let div of divs){
-        div.removeEventListener("click", showInfo);
-        div.removeEventListener("click", apiRequest);
-    }
+    $inputs = $(".mainContent input").removeAttr("readOnly");
+    // https://www.delftstack.com/howto/jquery/jquery-remove-event-listener/
+    let $divs = $("#sideNav > div");
+    $divs.unbind("click");
 }
 /* Enable inputs and listeners when done with adding or editing. */
 function enableInputs(){
