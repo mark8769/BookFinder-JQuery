@@ -275,16 +275,12 @@ function disableInputs(){
     // https://www.delftstack.com/howto/jquery/jquery-remove-event-listener/
     $divs = $("#sideNav > div").unbind("click");
 }
-/* Enable inputs and listeners when done with adding or editing. */
+/* 
+Enable inputs and listeners when done with adding or editing. 
+*/
 function enableInputs(){
-    
-    let inputs = document.querySelectorAll(".mainContent input");
-    for (let input of inputs){
-        input.setAttribute("readonly", "");
-    }
-    let divs = document.querySelectorAll("#sideNav > div");
-    for (let div of divs){
-        div.addEventListener("click", showInfo);
-        div.addEventListener("click", apiRequest);
-    }
+    $(".mainContent input").attr("readOnly", "");
+    let $navDivs = $("#sideNav > div");
+    $navDivs.click(showInfo);
+    $navDivs.click(apiRequest);
 }
