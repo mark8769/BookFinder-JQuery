@@ -18,13 +18,18 @@ function main(){
 }
 /* Add even listeners to buttongs, and nav divs. */
 function addListeners(){
-    document.getElementById("edit").addEventListener("click", edit);
-    document.getElementById("add").addEventListener("click", add);
-    let divs = document.querySelectorAll("#sideNav > div");
-    for (let div of divs){
-        div.addEventListener("click", showInfo);
-        div.addEventListener("click", apiRequest);
-    }
+    $("#edit").click(edit);
+    $("#add").click(add);
+    let $divs = $("#sideNav > div");
+    $divs.click(showInfo);
+    $divs.click(apiRequest);
+    //document.getElementById("edit").addEventListener("click", edit);
+    //document.getElementById("add").addEventListener("click", add);
+    //let divs = document.querySelectorAll("#sideNav > div");
+    // for (let div of divs){
+    //     div.addEventListener("click", showInfo);
+    //     div.addEventListener("click", apiRequest);
+    // }
 }
 /*
 Add new books to navigation bar and save to local storage.
