@@ -33,49 +33,51 @@ Add new books to navigation bar and save to local storage.
 */
 function add(){
 
-    let editButton = document.getElementById("edit");
-    let heading = document.getElementById("addHeading");
-    let titleNode = document.getElementById("title");
+    // Don't index, or attr functions wont work.
+    let $editButton = $("#edit");
+    let $heading = $("#addHeading");
+    let $titleNode = $("#title")[0]
 
     if (this.textContent == "Add"){
         this.textContent = "Save";
         disableInputs();
         this.classList.toggle("button");
-        editButton.setAttribute("disabled", "");
-        let selected = document.getElementsByClassName("selected");
-        for (let s of selected){
+        $editButton.attr("disabled", "");
+        let $selected = $(".selected");
+        for (let s of $selected){
             s.classList.toggle("selected");
         }
         resetPage();
-        heading.removeAttribute("hidden");
+        $heading.removeAttr("hidden");
     }else{
         this.textContent = "Add";
         enableInputs();
         this.classList.toggle("button");
-        editButton.removeAttribute("disabled");
-        heading.setAttribute("hidden", "");
-        if (titleNode.value != ""){
-            let newTitle = titleNode.value;
-            let author = document.getElementById("author").value;
-            let copyrightDate = document.getElementById("copyrightDate").value;
-            let numberOfPages = document.getElementById("numberOfPages").value;
+        $editButton.removeAttr("disabled");
+        $heading.attr("hidden", "");
+        if ($titleNode.value != ""){
+            let newTitle = $titleNode.value;
+            console.log(newTitle);
+            let $author = $("#author")[0].value;
+            let $copyrightDate = $("#copyrightDate")[0].value;
+            let $numberOfPages = $("#numberOfPages")[0].value;
             let book = {
                 title: newTitle,
-                author: author,
-                copyrightDate: copyrightDate,
-                numberOfPages: numberOfPages,
+                author: $author,
+                copyrightDate: $copyrightDate,
+                numberOfPages: $numberOfPages,
                 coverURL: ""
             }
-            localStorage.setItem(titleNode.value, JSON.stringify(book));
-            let div = document.createElement("div");
-            let sideNav = document.getElementById("sideNav");
-            div.id = newTitle;
-            div.innerHTML = newTitle;
-            div.addEventListener("click", showInfo);
-            div.addEventListener("click", apiRequest);
-            sideNav.appendChild(div);
+            console.log(book);
+            localStorage.setItem(newTitle, JSON.stringify(book));
+            let $newDiv = $("<div>");
+            $newDiv.attr("id", newTitle);
+            $newDiv.html(newTitle);
+            $newDiv.click(showInfo);
+            $newDiv.click(apiRequest);
+            $("#sideNav").append($newDiv[0]);
             // Click new div, to show info and retrive image.
-            div.click();
+            $newDiv.click();
         }else{
             console.log("Saved nothing");
         }
