@@ -192,32 +192,26 @@ function requestHandler(){
     localStorage.setItem(key, JSON.stringify(json));
     document.getElementById("bookCover").src = url;
 }
-/* Show book info from local storage when div is clicked. */
+/* 
+Shows book info from local storage when div is clicked. 
+*/
 function showInfo(){
     // Get id(title) from clicked div.
-    console.log(showInfo);
+    // Parse stored object back into json.
     let storedObject = localStorage.getItem(this.id);
-    // Divs to fill in info to.
-    let divTitle = document.getElementById("title");
-    let divAuthor = document.getElementById("author");
-    let divCopyright = document.getElementById("copyrightDate");
-    let divPages = document.getElementById("numberOfPages");
-    // Unlikely but check anyway.
-    if (storedObject !== null){
-        //console.log(storedObject);
-        // Parse stored object back into json.
-        let book = JSON.parse(storedObject);
-        divTitle.value = book.title;
-        divAuthor.value = book.author;
-        divCopyright.value = book.copyrightDate;
-        divPages.value = book.numberOfPages;
-        let img = document.getElementById("bookCover");
-        img.src = book.coverURL;
-        img.setAttribute("alt", `Book image of ${book.title}`)
-    }
-    let currSelected = document.getElementsByClassName("selected");
+    let book = JSON.parse(storedObject);
+    // Get field inputs, and fill in with stored information for book.
+    $("#title")[0].value = book.title;
+    $("#author")[0].value = book.author;
+    $("#copyrightDate")[0].value = book.copyrightDate;
+    $("#numberOfPages")[0].value = book.numberOfPages;
+    let $img = $("#bookCover");
+    $img.attr("src", book.coverURL)
+    $img.attr("alt", `Book image of ${book.title}`)
+
     // Turn of any selected elements (1).
-    for (let selected of currSelected){
+    let $currSelected = $(".selected");
+    for (let selected of $currSelected){
         selected.classList.toggle("selected");
     }
     // Add selected to div that was clicked.
