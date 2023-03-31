@@ -105,6 +105,8 @@ button{
     border: none;
     width: 90px;
     background-color: #FCFAF6;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 /* Change button blue when in editing modes. */
 .button{
