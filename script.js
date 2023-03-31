@@ -257,13 +257,21 @@ function addDefaultInfo(){
 }
 /* Remove book specific information when page is reloaded. */
 function resetPage(){
-    document.getElementById("title").value = "";
-    document.getElementById("author").value = "";
-    document.getElementById("copyrightDate").value = "";
-    document.getElementById("numberOfPages").value = "";
-    let img = document.getElementById("bookCover");
-    img.src = "";
-    img.alt = "";
+    $("#title")[0].value = "";
+    $("#author")[0].value = "";
+    $("#copyrightDate")[0].value = "";
+    $("#numberOfPages")[0].value = "";
+    let $img = $("#bookCover")[0];
+    console.log($img);
+    $img.src = "";
+    $img.alt = "";
+    // document.getElementById("title").value = "";
+    // document.getElementById("author").value = "";
+    // document.getElementById("copyrightDate").value = "";
+    // document.getElementById("numberOfPages").value = "";
+    // let img = document.getElementById("bookCover");
+    // img.src = "";
+    // img.alt = "";
 }
 /* Disable inputs when in add or edit mode. */
 function disableInputs(){
