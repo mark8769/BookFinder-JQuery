@@ -8,7 +8,9 @@ Purpose: BookFinder functions.
 /* Wait for html to load, then call main. */
 window.addEventListener("DOMContentLoaded", main);
 
-/* Main entry point of program */
+/* 
+Main entry point of program. 
+*/
 function main(){
     // Remove any book specific information from inputs.
     resetPage();
@@ -16,7 +18,9 @@ function main(){
     addDefaultInfo();
     addListeners();
 }
-/* Add even listeners to buttongs, and nav divs. */
+/* 
+Function to add event listeners to buttons, and nav divs. 
+*/
 function addListeners(){
     $("#edit").click(edit);
     $("#add").click(add);
