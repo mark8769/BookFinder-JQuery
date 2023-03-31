@@ -85,9 +85,10 @@ function add(){
 }
 function edit(){
 
-    let currEntry = document.getElementsByClassName("selected")[0];
+    let $currEntry = $(".selected")[0];
+    //console.log($currEntry)
     // If no items selected, then can't edit page.
-    if (currEntry == null){
+    if ($currEntry == null){
         alert("No entry selected.");
         return;
     }
