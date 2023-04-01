@@ -3,21 +3,23 @@ Mark Ortega-Ponce
 3/25/23
 styles.css
 */
+
 /*
-Set heights, so I can set other elements heights
+Set heights, so I can set other elements heights.
 */
 body{
     height: 100vh;
-    /* Remove margin from all sides, navigation links 
-    are flush to border when highlighted. And 
-    so borders lines are flush with borders. */
+    /* Remove margin from all sides of body. */
     margin: 0px 0px 0px 0px;
-    /* Make page into an SPA (Single Page Application) */
+    /* Remove scrolling for horizontal/vertical axis. */
     overflow-y: hidden;
     overflow-x: hidden;
     /* https://www.color-name.com/old-paper.color#color-palettes */
     background-color: #F3E9DB
 }
+/*
+Have html take full height of viewport.
+*/
 html{
     height: 100vh;
 }
@@ -35,13 +37,15 @@ h1{
     background-color: black;
     color:#F9F4ED;
 }
-/* Container for navigation bar and main content */
+/* Container for navigation 
+bar and main content. */
 .flex-container{
     height: 93%;
     display: flex;
     flex-direction: row;
 }
-/* Change display to set size, make labels appear bigger and bolder */
+/* Change display type to set size. 
+Make labels appear bigger and bolder. */
 label{
     display: inline-block;
     width: 125px;
@@ -57,12 +61,11 @@ input{
     width: 225px;
     background-color: #F9F4ED;
 }
-/* Make container full height of remaining window
-move away from left border */
+/* Make container full height of remaining 
+window move away from left border */
 #sideContainer{
     height: 100%;
     padding-top: 30px;
-    /* padding-left: 20px; */
     width: 250px;
     border-right: 2px solid black;
     /* Allow side navigation bar to be scrollable. */
@@ -83,7 +86,8 @@ Make entire height of remaining page. */
     display: flex;
     flex-direction: row;
 }
-/* Add spacing between inputs container and image container. */
+/* Add spacing between inputs 
+container and image container. */
 .mainContent, #imageContainer{
     height: 100%;
     padding-top: 30px;
@@ -100,22 +104,25 @@ button{
     margin-top: 5px;
     margin-bottom: 5px;
 }
-/* Change button blue when in editing modes. */
+/* Change button blue 
+when in editing modes. */
 .button{
     background-color: #09f;
     color: white;
 }
-/* Class to add to selected navigation links */
+/* Class to add to 
+selected navigation links. */
 .selected{
     background-color: #09f;
     font-weight: bolder;
     color: white;
 }
-/* Add some padding to buttons away from left border. */
+/* Add some padding to move
+buttons away from left border. */
 #buttonsDiv{
     padding-left: 10px;
 }
-/* Change delete button to red */
+/* Change delete button to red. */
 #remove{
     background-color: #FF4C5C;
     color: white;
