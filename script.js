@@ -177,7 +177,8 @@ function apiRequest(){
         data: request,
         method: "GET",
         dataType: "json"
-    }).done(requestHandler);
+    }).done(requestHandler).fail(requestFail);
+    // weird syntax
 }
 /*
 Handles any requests that are made. If response if ok, 
@@ -208,6 +209,14 @@ function requestHandler(returnedData){
     localStorage.setItem(key, JSON.stringify(json));
     //document.getElementById("bookCover").src = url;
     $("#bookCover").attr("src", url);
+}
+
+function requestFail(xhr, status, errorThrown){
+    //https://learn.jquery.com/ajax/jquery-ajax-methods/
+    alert( "Sorry, there was a problem!" );
+    console.log( "Error: " + errorThrown );
+    console.log( "Status: " + status );
+    console.dir( xhr );
 }
 /* 
 Shows book info from local storage when div is clicked. 
