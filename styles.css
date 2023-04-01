@@ -128,3 +128,8 @@ button{
     height: 550px;
     width: 350px;
 }
+/* Change delete button to red */
+#remove{
+    background-color: #FF4C5C;
+    color: white;
+}
