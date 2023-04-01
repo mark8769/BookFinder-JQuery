@@ -153,18 +153,8 @@ function edit(){
 Function to remove dom element from side navigation bar.
 */
 function remove(){
-    // console.log("removed element");
     let $selected = $(".selected");
     if (typeof $selected[0] !== 'undefined'){
-        // Confirm deletion, bad if user blocks prompts.
-        // if(window.confirm("Are you sure you want to delete this entry?")){
-        //     resetPage();
-        //     let key = $selected[0].id;
-        //     localStorage.removeItem(key);
-        //     $selected.remove();
-        // }else{
-        //     console.log("Delete canceled.")
-        // }
         resetPage();
         let key = $selected[0].id;
         localStorage.removeItem(key);
@@ -307,7 +297,6 @@ function resetPage(){
     $("#numberOfPages")[0].value = "";
     $("#remove").attr("hidden", "");
     let $img = $("#bookCover")[0];
-    console.log($img);
     $img.src = "";
     $img.alt = "";
 }
