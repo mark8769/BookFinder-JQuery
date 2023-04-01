@@ -33,7 +33,6 @@ function addListeners(){
 Add new books to navigation bar and save to local storage.
 */
 function add(){
-
     // Don't index, or attr functions wont work.
     let $editButton = $("#edit");
     let $heading = $("#addHeading");
@@ -50,6 +49,7 @@ function add(){
         }
         resetPage();
         $heading.removeAttr("hidden");
+        $("#remove").attr("hidden", "");
     }else{
         this.textContent = "Add";
         enableInputs();
@@ -79,6 +79,7 @@ function add(){
             $("#sideNav").append($newDiv[0]);
             // Click new div, to show info and retrive image.
             $newDiv.click();
+            $("#remove").removeAttr("hidden");
         }else{
             console.log("Saved nothing");
         }
@@ -152,7 +153,26 @@ function edit(){
 Function to remove dom element from side navigation bar.
 */
 function remove(){
-    console.log("removed element");
+    // console.log("removed element");
+    let $selected = $(".selected");
+    if (typeof $selected[0] !== 'undefined'){
+        // Confirm deletion, bad if user blocks prompts.
+        // if(window.confirm("Are you sure you want to delete this entry?")){
+        //     resetPage();
+        //     let key = $selected[0].id;
+        //     localStorage.removeItem(key);
+        //     $selected.remove();
+        // }else{
+        //     console.log("Delete canceled.")
+        // }
+        resetPage();
+        let key = $selected[0].id;
+        localStorage.removeItem(key);
+        $selected.remove();
+
+    }else{
+        console.log("Nothing to remove.");
+    }
 }
 /*
 Api request for when nav item is clicked. Makes a
@@ -186,11 +206,6 @@ retrive the image url if any and add it to local storage for future use.
 */
 function requestHandler(returnedData){
 
-    // if (this.status !== 200){
-    //     alert("Request failed");
-    // }
-    // let resp = JSON.parse(this.response);
-    // console.log(resp);
     let resp = returnedData;
     try{
         isbn = resp.docs[0].isbn[0];
@@ -210,7 +225,9 @@ function requestHandler(returnedData){
     //document.getElementById("bookCover").src = url;
     $("#bookCover").attr("src", url);
 }
-
+/*
+Function to handle failed api request.
+*/
 function requestFail(xhr, status, errorThrown){
     //https://learn.jquery.com/ajax/jquery-ajax-methods/
     alert( "Sorry, there was a problem!" );
@@ -232,8 +249,8 @@ function showInfo(){
     $("#copyrightDate")[0].value = book.copyrightDate;
     $("#numberOfPages")[0].value = book.numberOfPages;
     let $img = $("#bookCover");
-    $img.attr("src", book.coverURL)
-    $img.attr("alt", `Book image of ${book.title}`)
+    $img.attr("src", book.coverURL);
+    $img.attr("alt", `Book image of ${book.title}`);
 
     // Turn of any selected elements (1).
     let $currSelected = $(".selected");
@@ -242,6 +259,7 @@ function showInfo(){
     }
     // Add selected to div that was clicked.
     this.classList.add("selected");
+    $("#remove").removeAttr("hidden", "");
 }
 /*
 Function to add default books to page as side nav links.
@@ -287,6 +305,7 @@ function resetPage(){
     $("#author")[0].value = "";
     $("#copyrightDate")[0].value = "";
     $("#numberOfPages")[0].value = "";
+    $("#remove").attr("hidden", "");
     let $img = $("#bookCover")[0];
     console.log($img);
     $img.src = "";
