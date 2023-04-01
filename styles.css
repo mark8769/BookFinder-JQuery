@@ -8,7 +8,9 @@ Set heights, so I can set other elements heights
 */
 body{
     height: 100vh;
-    /* Remove margin from all sides, navigation links are flush to border when highlighted. And so borders lines are flush with borders. */
+    /* Remove margin from all sides, navigation links 
+    are flush to border when highlighted. And 
+    so borders lines are flush with borders. */
     margin: 0px 0px 0px 0px;
     /* Make page into an SPA (Single Page Application) */
     overflow-y: hidden;
@@ -39,9 +41,6 @@ h1{
     display: flex;
     flex-direction: row;
 }
-footer{
-    height: 2%;
-}
 /* Change display to set size, make labels appear bigger and bolder */
 label{
     display: inline-block;
@@ -56,13 +55,6 @@ input{
     margin-bottom: 20px;
     padding: 5px 5px 5px 5px;
     width: 225px;
-    /* https://stackoverflow.com/questions/3193512/css-rounded-text-input-fields */
-    /* css 3 */
-    border-radius:1px;
-    /* mozilla */
-    -moz-border-radius:1px;
-    /* webkit */
-    -webkit-border-radius:1px;
     background-color: #F9F4ED;
 }
 /* Make container full height of remaining window
@@ -73,7 +65,6 @@ move away from left border */
     /* padding-left: 20px; */
     width: 250px;
     border-right: 2px solid black;
-    background-image: url("bookshelf.png");
     /* Allow side navigation bar to be scrollable. */
     overflow:auto;
 }
@@ -92,12 +83,13 @@ Make entire height of remaining page. */
     display: flex;
     flex-direction: row;
 }
+/* Add spacing between inputs container and image container. */
 .mainContent, #imageContainer{
     height: 100%;
     padding-top: 30px;
     padding-left: 80px;
 }
-/* Button styling */
+/* Button styling. */
 button{
     cursor: pointer;
     padding: 10px;
@@ -123,13 +115,11 @@ button{
 #buttonsDiv{
     padding-left: 10px;
 }
-/* Class to add on in javascript */
-.img-size{
-    height: 550px;
-    width: 350px;
-}
 /* Change delete button to red */
 #remove{
     background-color: #FF4C5C;
     color: white;
+}
+img{
+    margin-right: 20px;
 }
