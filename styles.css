@@ -120,6 +120,7 @@ button{
     background-color: #FF4C5C;
     color: white;
 }
+/* Add some margin to right of image. */
 img{
     margin-right: 20px;
 }
