@@ -36,7 +36,7 @@ function add(){
     // Don't index, or attr functions wont work.
     let $editButton = $("#edit");
     let $heading = $("#addHeading");
-    let $titleNode = $("#title")[0]
+    let $titleNode = $("#title")[0];
 
     if (this.textContent == "Add"){
         this.textContent = "Save";
@@ -58,7 +58,7 @@ function add(){
         $heading.attr("hidden", "");
         if ($titleNode.value != ""){
             let newTitle = $titleNode.value;
-            console.log(newTitle);
+            //console.log(newTitle);
             let $author = $("#author")[0].value;
             let $copyrightDate = $("#copyrightDate")[0].value;
             let $numberOfPages = $("#numberOfPages")[0].value;
@@ -69,7 +69,7 @@ function add(){
                 numberOfPages: $numberOfPages,
                 coverURL: ""
             }
-            console.log(book);
+            //console.log(book);
             localStorage.setItem(newTitle, JSON.stringify(book));
             let $newDiv = $("<div>");
             $newDiv.attr("id", newTitle);
@@ -81,7 +81,7 @@ function add(){
             $newDiv.click();
             $("#remove").removeAttr("hidden");
         }else{
-            console.log("Saved nothing");
+            console.log("Saved nothing.");
         }
     }
 }
@@ -103,9 +103,9 @@ function edit(){
         this.textContent = "Save";
         disableInputs();
         // Toggle if we pass initial check.
-        this.classList.toggle("button")
+        this.classList.toggle("button");
         // Remove event listeners from all buttons, add to save button.
-        let $addButton = $("#add")
+        let $addButton = $("#add");
         //let addButton = document.getElementById("add");
         $addButton.attr("disabled", "");
         $addButton.unbind("click");
@@ -129,7 +129,7 @@ function edit(){
         if (storedJson.title != title){
             // Remove old cover.
             // Should a user be able to change the title?
-            console.log("title changed");
+            console.log("Title changed.");
             storedJson.coverURL = "";
             // get new image if any.
             $currDiv[0].click();
@@ -206,12 +206,10 @@ function requestHandler(returnedData){
     }
     // Get div id to access local storage by key.
     let key = $(".selected")[0].id;
-    //let key = document.getElementsByClassName("selected")[0].id;
     let json = JSON.parse(localStorage.getItem(key));
     json.coverURL = url;
     // Store newly retrieved information.
     localStorage.setItem(key, JSON.stringify(json));
-    //document.getElementById("bookCover").src = url;
     $("#bookCover").attr("src", url);
 }
 /*
