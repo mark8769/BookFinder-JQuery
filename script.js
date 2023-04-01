@@ -24,6 +24,7 @@ Function to add event listeners to buttons, and nav divs.
 function addListeners(){
     $("#edit").click(edit);
     $("#add").click(add);
+    $("#remove").click(remove);
     let $divs = $("#sideNav > div");
     $divs.click(showInfo);
     $divs.click(apiRequest);
@@ -148,6 +149,12 @@ function edit(){
     }
 }
 /*
+Function to remove dom element from side navigation bar.
+*/
+function remove(){
+    console.log("removed element");
+}
+/*
 Api request for when nav item is clicked. Makes a
 request to retrieve the book titles isbn value to then
 get the image url.
@@ -163,24 +170,27 @@ function apiRequest(){
     let cleanedTitle = title.toLowerCase();
     cleanedTitle = cleanedTitle.replace(" ", "+");
     // Start connection, and send API request.
-    let requestor = new XMLHttpRequest();
-    // https://openlibrary.org/dev/docs/api/search
-    let endpoint = "https://openlibrary.org/search.json?title="
-    requestor.addEventListener("load", requestHandler);
-    requestor.open("GET", endpoint + cleanedTitle);
-    requestor.send();
+
+    let request = {title: cleanedTitle};
+    $.ajax({
+        url: "https://openlibrary.org/search.json?",
+        data: request,
+        method: "GET",
+        dataType: "json"
+    }).done(requestHandler);
 }
 /*
 Handles any requests that are made. If response if ok, 
 retrive the image url if any and add it to local storage for future use.
 */
-function requestHandler(){
+function requestHandler(returnedData){
 
-    if (this.status !== 200){
-        alert("Request failed");
-    }
-    let resp = JSON.parse(this.response);
-    console.log(resp);
+    // if (this.status !== 200){
+    //     alert("Request failed");
+    // }
+    // let resp = JSON.parse(this.response);
+    // console.log(resp);
+    let resp = returnedData;
     try{
         isbn = resp.docs[0].isbn[0];
         var url = `https://covers.openlibrary.org/b/isbn/${isbn}-L.jpg`
@@ -190,12 +200,14 @@ function requestHandler(){
         var url = "";
     }
     // Get div id to access local storage by key.
-    let key = document.getElementsByClassName("selected")[0].id;
+    let key = $(".selected")[0].id;
+    //let key = document.getElementsByClassName("selected")[0].id;
     let json = JSON.parse(localStorage.getItem(key));
     json.coverURL = url;
     // Store newly retrieved information.
     localStorage.setItem(key, JSON.stringify(json));
-    document.getElementById("bookCover").src = url;
+    //document.getElementById("bookCover").src = url;
+    $("#bookCover").attr("src", url);
 }
 /* 
 Shows book info from local storage when div is clicked. 
@@ -276,6 +288,7 @@ function disableInputs(){
     $(".mainContent input").removeAttr("readOnly");
     // https://www.delftstack.com/howto/jquery/jquery-remove-event-listener/
     $divs = $("#sideNav > div").unbind("click");
+    $("#remove").unbind("click");
 }
 /* 
 Enable inputs and listeners when done with adding or editing. 
@@ -285,4 +298,5 @@ function enableInputs(){
     let $navDivs = $("#sideNav > div");
     $navDivs.click(showInfo);
     $navDivs.click(apiRequest);
+    $("#remove").click(remove);
 }
