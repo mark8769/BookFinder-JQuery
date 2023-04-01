@@ -114,8 +114,8 @@ function edit(){
         enableInputs();
         let title = $("#title")[0].value;
         let author = $("#author")[0].value;
-        let copyrightDate = $("#copyrightDate").value;
-        let numberOfPages = $("#numberOfPages").value;
+        let copyrightDate = $("#copyrightDate")[0].value;
+        let numberOfPages = $("#numberOfPages")[0].value;
         // Get id(title) for currently selected div.
         let $currDiv = $(".selected");
         let currTitle = $currDiv[0].id;
@@ -159,7 +159,6 @@ function remove(){
         let key = $selected[0].id;
         localStorage.removeItem(key);
         $selected.remove();
-
     }else{
         console.log("Nothing to remove.");
     }
